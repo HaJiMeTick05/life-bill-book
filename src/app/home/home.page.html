@@ -1,0 +1,35 @@
+<ion-content [fullscreen]="true">
+  <img src="assets/image-removebg-previews.png" alt="Logo" class="login-logo" style="margin-left: 5px;  padding: 120px;" />
+  <div id="login-container">
+     <br>
+      <br>
+       <br>
+    <br>
+       
+
+       
+ <br>
+    <h1>Life Bill Book</h1>
+
+    <ion-item>
+      <ion-input [(ngModel)]="email" label="Email" type="email" placeholder="Enter your email"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input [(ngModel)]="password" label="Password" type="password" placeholder="Enter your password"></ion-input>
+    </ion-item>
+
+    <ion-button expand="block" class="login-button" (click)="login()">Login</ion-button>
+    
+    <div class="forgot-password">
+      <a href="forgetpassword">Forgot Password?</a>
+    </div>
+
+    <div class="signup-text">
+      Don't have an account? <a href="sign">Sign Up</a>
+    </div>
+  </div>
+
+
+  
+</ion-content>

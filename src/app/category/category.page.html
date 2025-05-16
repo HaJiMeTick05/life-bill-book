@@ -1,0 +1,43 @@
+<ion-header [translucent]="true">
+  <ion-toolbar style="--background: white; --color: black;">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/dashboard"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Add category</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Add Category</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <form (ngSubmit)="addCategory()">
+    <ion-item>
+      <ion-label position="stacked">Category Name</ion-label>
+      <ion-input [(ngModel)]="category.name" name="name" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Category Type</ion-label>
+      <ion-select [(ngModel)]="category.type" name="type" required>
+        <ion-select-option value="income">Income</ion-select-option>
+        <ion-select-option value="expense">Expense</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-button expand="full" type="submit">Add Category</ion-button>
+  </form>
+
+  <ion-list>
+    <ion-item *ngFor="let cat of categoryList">
+      <ion-label> {{ cat.name }} ({{ cat.type }}) </ion-label>
+    
+      <ion-button color="danger" fill="clear" slot="end" (click)="confirmDelete(cat.id)">
+        Delete
+      </ion-button>
+    </ion-item>
+  </ion-list>
+</ion-content>

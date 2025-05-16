@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar style="--background: white; --color: black;">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/dashboard"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Transaction History</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <!-- 🔽 月份选择器 -->
+  <div class="month-picker ion-margin-bottom">
+    <ion-item lines="none">
+      <ion-label>Month</ion-label>
+      <ion-select [(ngModel)]="selectedMonth" (ionChange)="onMonthChange()">
+        <ion-select-option *ngFor="let m of months" [value]="m.value">{{ m.label }}</ion-select-option>
+      </ion-select>
+      <ion-label>Year</ion-label>
+      <ion-select [(ngModel)]="selectedYear" (ionChange)="onMonthChange()">
+        <ion-select-option *ngFor="let y of years" [value]="y">{{ y }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <!-- 🔽 导出按钮 -->
+    <ion-button expand="block" color="primary" class="ion-margin-top" (click)="exportAsCSV()">
+      Export as CSV
+    </ion-button>
+    <ion-button expand="block" color="secondary" (click)="exportAsPDF()">
+      Export as PDF
+    </ion-button>
+  </div>
+
+  <!-- 🔽 交易列表 -->
+  <ion-card *ngFor="let tx of transactionHistory" class="transaction-card">
+    <ion-card-header>
+      <ion-card-title class="ion-text-capitalize">{{ tx.category }}</ion-card-title>
+      <ion-card-subtitle>
+        <ion-chip color="{{ tx.type === 'income' ? 'success' : 'danger' }}" outline>
+          <ion-label>{{ tx.type }}</ion-label>
+        </ion-chip>
+      </ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <p class="note">
+        {{ tx.note && tx.note.trim() !== '' ? tx.note : 'No note provided' }}
+      </p>
+      
+      <p class="date">{{ tx.date | date: 'medium' }}</p>
+      <h2 class="amount" [ngClass]="tx.type">{{ tx.type === 'income' ? '+' : '-' }}RM {{ tx.amount }}</h2>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-text *ngIf="transactionHistory.length === 0" color="medium">
+    <p class="ion-text-center">No transaction history found.</p>
+  </ion-text>
+
+</ion-content>

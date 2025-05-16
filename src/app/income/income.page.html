@@ -1,0 +1,51 @@
+<ion-header [translucent]="true">
+  <ion-toolbar style="--background: white; --color: black;">
+
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/dashboard"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Add Income</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <ion-card class="income-card">
+    <ion-card-header>
+      <ion-card-title>New Income Entry</ion-card-title>
+      <ion-card-subtitle>Fill in your income details</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <form (ngSubmit)="submitIncome()">
+        <ion-item lines="full">
+          <ion-label position="floating">Amount (RM)</ion-label>
+          <ion-input type="number" [(ngModel)]="income.amount" name="amount" required></ion-input>
+        </ion-item>
+
+        <ion-item lines="full">
+          <ion-label position="floating">Note</ion-label>
+          <ion-input type="text" [(ngModel)]="income.note" name="note"></ion-input>
+        </ion-item>
+
+        <ion-item lines="full">
+          <ion-label position="floating">Date</ion-label>
+          <ion-input type="date" [(ngModel)]="income.date" name="date"></ion-input>
+        </ion-item>
+
+        <ion-item lines="full">
+          <ion-label>Category</ion-label>
+          <ion-select [(ngModel)]="income.categoryId" name="categoryId" interface="popover" placeholder="Select category">
+            <ion-select-option *ngFor="let category of incomeCategories" [value]="category.id">
+              {{ category.name }}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-button expand="block" type="submit" color="success" class="ion-margin-top">
+          <ion-icon name="add-circle-outline" slot="start"></ion-icon>
+          Add Income
+        </ion-button>
+      </form>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

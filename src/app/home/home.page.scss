@@ -1,0 +1,51 @@
+#login-container {
+  position: absolute; 
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  max-width: 400px; 
+  padding: 0 24px;
+  text-align: center;
+}
+
+#login-container h1 {
+  margin-bottom: 40px;
+  font-size: 32px;
+  font-weight: bold;
+}
+
+ion-item {
+  margin-bottom: 20px;
+}
+
+.login-button {
+  margin-top: 20px;
+}
+
+.signup-text {
+  margin-top: 20px;
+  color: #8c8c8c;
+  font-size: 14px;
+}
+
+.signup-text a {
+  text-decoration: none;
+  color: #3880ff;
+  font-weight: bold;
+}
+
+.forgot-password {
+  margin-top: 8px;
+  margin-bottom: 12px;
+}
+
+.forgot-password a {
+  text-decoration: none;
+  color: #3880ff;
+  font-size: 14px;
+  font-weight: bold;
+}

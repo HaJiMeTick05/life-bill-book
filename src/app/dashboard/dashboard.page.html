@@ -1,0 +1,90 @@
+<ion-header>
+  <ion-toolbar class="white-header">
+    <ion-title class="black-text">Spending</ion-title>
+    <ion-buttons slot="end">
+      <ion-button class="black-icon" (click)="openMenu($event)">
+        <img src="assets/menu.png" alt="menu" style="width: 50px;" />
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+
+
+<ion-content [fullscreen]="true" class="ion-padding">
+
+ 
+  <div class="progress-container">
+    <div class="progress-bar">
+      <div
+        class="income-bar"
+        [style.width.%]="incomePercent"
+      ></div>
+      <div
+        class="expense-bar"
+        [style.width.%]="expensePercent"
+      ></div>
+    </div>
+  </div>
+
+ 
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Monthly Expense Chart</ion-card-title>
+      <div class="month-navigation">
+        <ion-button size="small" (click)="changeMonth(-1)">←</ion-button>
+        <span>{{ selectedYear }} - {{ selectedMonth < 10 ? '0' + selectedMonth : selectedMonth }}</span>
+        <ion-button size="small" (click)="changeMonth(1)">→</ion-button>
+      </div>
+    </ion-card-header>
+    <ion-card-content>
+      <canvas id="monthlyChart"></canvas>
+    </ion-card-content>
+  </ion-card>
+
+
+  <div class="summary">
+    <div class="summary-item">
+      <strong>Income</strong>
+      <span class="income">RM {{ totalIncome | number:'1.2-2' }}</span>
+    </div>
+    <div class="summary-item">
+      <strong>Expense</strong>
+      <span class="expense">RM {{ totalExpense | number:'1.2-2' }}</span>
+    </div>
+    <hr />
+  </div>
+
+
+  <div class="transaction-list-scrollable">
+    <div
+      class="transaction-item"
+      *ngFor="let tx of filteredTransactions"
+    >
+      <span>{{ tx.category }}</span>
+      <span>RM {{ tx.amount | number:'1.2-2' }}</span>
+    </div>
+  </div>
+
+</ion-content>
+   
+
+<ion-footer class="ion-no-border">
+  <div class="balance-container ion-padding">
+    <div class="balance-label">Balance</div>
+    <div
+      class="balance-amount"
+      [ngClass]="(totalIncome - totalExpense) >= 0 ? 'positive' : 'negative'"
+    >
+      {{ (totalIncome - totalExpense) >= 0 ? '+' : '-' }}
+      RM {{ (totalIncome - totalExpense) | number:'1.2-2' }}
+    </div>
+  </div>
+
+  <div class="footer-buttons">
+    <ion-button expand="block" color="danger" (click)="goToExpensePage()">+ Expense</ion-button>
+    <ion-button expand="block" color="success" (click)="goToIncomePage()">+ Income</ion-button>
+  </div>
+</ion-footer>
+

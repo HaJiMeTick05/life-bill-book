@@ -1,0 +1,23 @@
+<ion-content [fullscreen]="true">
+  <div id="signup-container">
+    <h1>Sign Up</h1>
+
+    <ion-item>
+      <ion-input [(ngModel)]="signUpData.name" label="Name" type="text" placeholder="Enter your name"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input [(ngModel)]="signUpData.email" label="Email" type="email" placeholder="Enter your email"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input [(ngModel)]="signUpData.password" label="Password" type="password" placeholder="Enter your password"></ion-input>
+    </ion-item>
+
+    <ion-button expand="block" class="signup-button" (click)="onSubmit()">Next</ion-button>
+
+    <div class="login-text">
+      Already have an account? <a href="#" (click)="goToLogin()">Login</a>
+    </div>
+  </div>
+</ion-content>

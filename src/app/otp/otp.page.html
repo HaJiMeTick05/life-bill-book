@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>OTP Verification</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div *ngIf="email">
+    <p>Email: <strong>{{ email }}</strong></p>
+  </div>
+
+  <ion-item>
+    <ion-input
+      type="text"
+      placeholder="Enter OTP"
+      [(ngModel)]="otp"
+    ></ion-input>
+  </ion-item>
+
+  <ion-button expand="block" (click)="verifyOtp()" [disabled]="!otp">Verify</ion-button>
+
+  <ion-button fill="clear" expand="block" (click)="sendOtp()">Resend OTP</ion-button>
+</ion-content>
